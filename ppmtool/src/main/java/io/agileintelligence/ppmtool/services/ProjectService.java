@@ -6,6 +6,7 @@ import io.agileintelligence.ppmtool.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class ProjectService {
 
@@ -29,5 +30,9 @@ public class ProjectService {
 
         }
         return project;
+    }
+
+    public Iterable<Project> findAllProjects() {
+        return projectRepository.findAll();
     }
 }
