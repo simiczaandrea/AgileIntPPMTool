@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Controller
 @RequestMapping("api/project")
@@ -41,7 +43,14 @@ public class ProjectController {
     }
 
     @GetMapping("/all")
-    public Iterable<Project> getAllProjects(){
-        return projectService.findAllProjects();
+    public ResponseEntity<Iterable<Project>> getAllProjects(){
+        return new ResponseEntity<Iterable<Project>>(projectService.findAllProjects(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{projectId}")
+    public ResponseEntity<?> deleteProject(@PathVariable String projectId){
+        projectService.deleteProjectByIdentifier(projectId);
+
+        return new ResponseEntity<String>("Project with ID: '" + projectId + "' was deleted succesfull", HttpStatus.OK);
     }
 }
