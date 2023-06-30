@@ -15,6 +15,7 @@ import java.util.List;
 
 
 @Controller
+@CrossOrigin
 @RequestMapping("api/project")
 public class ProjectController {
 
