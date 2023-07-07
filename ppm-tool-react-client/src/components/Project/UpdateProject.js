@@ -22,7 +22,7 @@ class UpdateProject extends Component {
     
     componentDidMount() {
         const { id } = this.props.match.params; 
-        this.props.getProject(id);
+        this.props.getProject(id, this.props.history);
     }
     
     componentWillReceiveProps(nextProps){
@@ -34,7 +34,7 @@ class UpdateProject extends Component {
             projectIdentifier, 
             description, 
             start_date, 
-            end_date
+            end_date,
         })
 
         if(nextProps.errors){
@@ -88,17 +88,13 @@ class UpdateProject extends Component {
                                 <div className="form-group">
                                     <input 
                                         type="text" 
-                                        className={classnames("form-control form-control-lg", {
-                                            "is-invalid": errors.projectIdentifier
-                                        })} 
+                                        className="form-control form-control-lg"
                                         placeholder="Unique Project ID" 
                                         name="projectIdentifier"
                                         value={this.state.projectIdentifier}
                                         onChange={this.onChange}
+                                        disabled
                                         />
-                                        {errors.projectIdentifier && (
-                                        <div className='invalid-feedback'>{errors.projectIdentifier}</div>
-                                    )}
                                 </div>
                 
                                 <div className="form-group">
